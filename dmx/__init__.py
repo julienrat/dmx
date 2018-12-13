@@ -5,7 +5,7 @@ import fcntl
 import time
 
 class DMX_Serial:
-    def __init__(self, port="/dev/ttyUSB0"):
+    def __init__(self, port="/dev/ttyUSB3"):
         if isinstance(port, str):
             self.ser = serial.Serial(port)
         else:
@@ -22,6 +22,7 @@ class DMX_Serial:
         self.send_thread = threading.Thread(target=self.sender)
         self.send_thread.daemon = True
         self.send_thread.start()
+        self.canal=bytearray(513)  
 
     def start(self):
         self.enabled = True
@@ -43,5 +44,8 @@ class DMX_Serial:
                 self.data = self.nextdata
                 self.nextdata = None
 
-    def set_data(self, data):
-        self.nextdata = data
+    def set_data(self, value, channel):
+        #      
+        self.canal[channel-1]= value
+        self.nextdata = self.canal
+
