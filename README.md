@@ -1,8 +1,8 @@
 # SimpleDMX
 ## Requirements / Dependencies
-before using this script, please install pyserial
+Before using this script, please install pyserial
 ```
-sudo pip install pyseral
+sudo pip install pyserial
 ```
 ## Hardward compatibility
 FTDI to RS485 cheap dongle :
